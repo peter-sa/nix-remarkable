@@ -17,7 +17,7 @@
     name = "zero-gravitas";
     gcc = {
       arch = "armv7-a";
-      # The default toolchain environment setup puts -mflaot-abi=hard
+      # The default toolchain environment setup puts -mfloat-abi=hard
       # in $CC, which is somewhat important---anything that uses the
       # standard library from this toolchain _must_ be compiled
       # hardfp. If we put this here, it'll get included in the wrapper
@@ -31,7 +31,7 @@
       # the kernel.
       #
       # It would be nice to make modules also automatically have that variable set, but that appears to not be possible.
-      #float-abi = "hard";
+      # float-abi = "hard";
       fpu = "neon";
       cpu = "cortex-a9";
     };

@@ -2,8 +2,9 @@
 { srcs, hostPkgs }: with srcs;
 
 (import nixpkgs {
+  system = "x86_64-linux";
   config.allowUnsupportedSystem = true;
-  crossSystem = import ./system.nix { lib = import <nixpkgs/lib>; };
+  crossSystem = import ./system.nix { lib = import "${nixpkgs}/lib"; };
   overlays = [
     # Basic tools---the toolchain packages
     (import ./toolchain.nix)
@@ -18,7 +19,7 @@
     # Try to link most things statically, to reduce the number/net
     # size of files that must be deployed
     (import ./static.nix)
-    (import <nixpkgs/pkgs/top-level/static.nix>)
+    (import "${nixpkgs}/pkgs/top-level/static.nix")
     # Overrides to make more things work (hopefully)
     # Most of this should probably be moved into crossOverlays
     (import ./overrides.nix)
